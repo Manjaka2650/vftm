@@ -4,9 +4,9 @@ const nextConfig = {
     // domains: ["localhost"], // Ajouter votre domaine ici
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "3000",
+        protocol: "https",
+        hostname: "Manjaka2650.github.io",
+        port: "",
         pathname: "/**",
       },
     ],
