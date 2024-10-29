@@ -91,7 +91,11 @@ function Footer() {
         <div className="w-full text-right text-gray-200 mt-4">
           <p>
             Copyright &#169; 2024{" "}
-            <a href="" className="text-green-200 hover:underline">
+            <a
+              href="https://eni.mg"
+              target="_blank"
+              className="text-green-200 hover:underline"
+            >
               &Eacute;tudiant d&apos;ENI
             </a>{" "}
             Tout droit r&eacute;serv&eacute;
