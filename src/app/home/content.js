@@ -18,8 +18,8 @@ export function Content() {
             VFTM a &acute;t&acute; cr&acute; en 2006, compos&acute;e de 22
             organisations paysannes de la R&acute;gion Matsiatra Ambony,
             repr&acute;sentant plus de 3500 paysans, sur les 7 districts et 58
-            communes. C'est la seule plateforme syndicale de la R&acute;gion
-            Haute Matsiatra.
+            communes. C&apos;est la seule plateforme syndicale de la
+            R&acute;gion Haute Matsiatra.
           </Typography>
         </div>
         <div className="md:w-1/2 flex flex-col justify-between mt-8 md:mt-0">

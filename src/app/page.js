@@ -226,9 +226,9 @@ function Component({ image, id }) {
         <p className="mt-2 text-black">
           Pr&eacute;sence, participation interactive et &eacute;motion des
           membres et invit&eacute;es à la 13e assembl&eacute;e
-          g&eacute;n&eacute;rale d'Agro-sans-frontière Suisse. Un soutien
-          &eacute;vident et un encouragement pour le comit&eacute; et les
-          chef-fe-s de projet en Afrique de l'Ouest et [...]
+          g&eacute;n&eacute;rale d&apos;Agro-sans-fronti&egrave;re Suisse. Un
+          soutien &eacute;vident et un encouragement pour le comit&eacute; et
+          les chef-fe-s de projet en Afrique de l&apos;Ouest et [...]
         </p>
         {/* Bouton vert */}
         <div className="flex flex-row justify-between">
@@ -263,7 +263,7 @@ function Component2({ image, id }) {
         <p className="mt-2 text-black">
           Pr&eacute;sence, participation interactive et &eacute;motion des
           membres et invit&eacute;es à la 13e assembl&eacute;e
-          g&eacute;n&eacute;rale d'Agro-sans-frontière Suisse. Un soutien
+          g&eacute;n&eacute;rale d'Agro-sans-fronti&egrave;re Suisse. Un soutien
           &eacute;vident et un encouragement pour le comit&eacute; et les
           chef-fe-s de projet en Afrique de l'Ouest et [...]
         </p>
