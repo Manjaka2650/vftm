@@ -8,7 +8,9 @@ import Contenu3 from "./home/contenu3";
 import Contenu2 from "./home/content";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 export default function Campaign() {
+  const [currentPage, setcurrentPage] = useState(1);
   return (
     <>
       <Navbar />
@@ -16,16 +18,20 @@ export default function Campaign() {
       <ValueProposition />
 
       <Contenu3 />
-      <ActuAlite />
+      <ActuAlite currentPage={currentPage} />
       <section className="flex justify-center mb-20">
-        <Pagination currentPage={1} totalPages={6} />
+        <Pagination
+          currentPage={currentPage}
+          setcurrentPage={setcurrentPage}
+          totalPages={6}
+        />
       </section>
       <Footer />
     </>
   );
 }
 
-const Pagination = ({ currentPage, totalPages }) => {
+const Pagination = ({ currentPage, totalPages, setcurrentPage }) => {
   const renderPageNumbers = () => {
     const pageNumbers = [];
     const maxVisiblePages = 5;
@@ -42,7 +48,7 @@ const Pagination = ({ currentPage, totalPages }) => {
                 : "text-gray-700 hover:bg-gray-600 hover:text-white"
             }`}
             onClick={() => {
-              // Handle page click
+              setcurrentPage(i);
             }}
           >
             {i}
@@ -61,7 +67,7 @@ const Pagination = ({ currentPage, totalPages }) => {
                 : "text-gray-700 hover:bg-gray-600  hover:text-white"
             }`}
             onClick={() => {
-              // Handle page click
+              setcurrentPage(i);
             }}
           >
             {i}
@@ -87,7 +93,7 @@ const Pagination = ({ currentPage, totalPages }) => {
                 : "text-gray-700 hover:bg-gray-600 hover:text-white"
             }`}
             onClick={() => {
-              // Handle page click
+              setcurrentPage(totalPages);
             }}
           >
             {totalPages}
@@ -106,10 +112,10 @@ const Pagination = ({ currentPage, totalPages }) => {
         <button
           className="border rounded-full px-3 py-1 text-gray-700 hover:bg-gray-100"
           onClick={() => {
-            // Handle previous page click
+            setcurrentPage(currentPage - 1);
           }}
         >
-          Previous
+          Pr&eacute;cedent
         </button>
       )}
 
@@ -121,7 +127,7 @@ const Pagination = ({ currentPage, totalPages }) => {
         <button
           className="border rounded-full px-3 py-1 text-gray-700 hover:bg-gray-100"
           onClick={() => {
-            // Handle next page click
+            setcurrentPage(currentPage + 1);
           }}
         >
           Suivant
@@ -192,16 +198,55 @@ const ValueProposition = () => {
     </div>
   );
 };
-const ActuAlite = () => {
+const ActuAlite = ({ currentPage }) => {
   return (
     <div className="flex flex-col items-center mb-20 m-10 bg-white">
       {/* Titre centr&eacute; et plus grand */}
       <h1 className="text-4xl font-bold text-center ">Nos actualit&eacute;</h1>
 
       <div className="mt-10 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-10">
-        <Component image={"/image/vftm/sary12.png"} id={1} />
-        <Component2 image={"/image/vftm/sary9.JPG"} id={2} />
-        <Component3 image={"/image/vftm/sary13.png"} id={3} />
+        {currentPage == 1 && (
+          <>
+            <Component image={"/image/vftm/sary12.png"} id={1} />
+            <Component2 image={"/image/vftm/sary9.JPG"} id={2} />
+            <Component3 image={"/image/vftm/sary13.png"} id={3} />
+          </>
+        )}
+        {currentPage == 2 && (
+          <>
+            <Component image={"/image/vftm-actu/img1.png"} id={4} />
+            <Component2 image={"/image/vftm-actu/img9.png"} id={5} />
+            <Component3 image={"/image/vftm-actu/img22.png"} id={6} />
+          </>
+        )}
+        {currentPage == 3 && (
+          <>
+            <Component image={"/image/vftm/sary12.png"} id={1} />
+            <Component2 image={"/image/vftm/sary9.JPG"} id={2} />
+            <Component3 image={"/image/vftm/sary13.png"} id={3} />
+          </>
+        )}
+        {currentPage == 4 && (
+          <>
+            <Component image={"/image/vftm-actu/img1.png"} id={4} />
+            <Component2 image={"/image/vftm-actu/img9.png"} id={5} />
+            <Component3 image={"/image/vftm-actu/img22.png"} id={6} />
+          </>
+        )}
+        {currentPage == 5 && (
+          <>
+            <Component image={"/image/vftm/sary12.png"} id={13} />
+            <Component2 image={"/image/vftm/sary9.JPG"} id={14} />
+            <Component3 image={"/image/vftm/sary13.png"} id={15} />
+          </>
+        )}
+        {currentPage == 6 && (
+          <>
+            <Component image={"/image/vftm-actu/img1.png"} id={4} />
+            <Component2 image={"/image/vftm-actu/img9.png"} id={5} />
+            <Component3 image={"/image/vftm-actu/img22.png"} id={6} />
+          </>
+        )}
       </div>
     </div>
   );
