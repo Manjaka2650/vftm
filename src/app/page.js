@@ -200,11 +200,14 @@ const ValueProposition = () => {
 };
 const ActuAlite = ({ currentPage }) => {
   return (
-    <div className="flex flex-col items-center mb-20 m-10 bg-white">
-      {/* Titre centr&eacute; et plus grand */}
-      <h1 className="text-4xl font-bold text-center ">Nos actualit&eacute;</h1>
+    <div className="flex flex-col items-center mb-20 m-5 bg-white">
+      {/* Titre centré et plus grand */}
+      <h1 className="text-3xl md:text-4xl font-bold text-center mb-10">
+        Nos actualités
+      </h1>
 
-      <div className="mt-10 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-10">
+      {/* Grid layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 max-w-screen-xl mx-auto px-4">
         {currentPage == 1 && (
           <>
             <Component image={"/image/vftm/sary12.png"} id={1} />

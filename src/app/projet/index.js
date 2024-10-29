@@ -26,9 +26,22 @@ export default function Projet() {
   return (
     <section className="pt-20">
       <div className="relative bg-cover bg-no-repeat p-10 items-center bg-green-600">
-        <Typography variant="h3" className=" text-white">
-          Nos projets
-        </Typography>
+        <div className="flex flex-row justify-between mt-5">
+          <Typography
+            variant="h3"
+            className="text-white " // Added a color for hover state
+          >
+            Nos projets
+          </Typography>
+          <div className="flex flex-wrap">
+            <p className="text-white hover:text-gray-300 cursor-pointer">
+              Accueil {" >  "}
+            </p>
+            <p className="text-white hover:text-gray-300 cursor-pointer">
+              Projets
+            </p>
+          </div>
+        </div>
       </div>
       <div className="mt-10 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-10 gap-4">
         {images.map((image, index) => (
