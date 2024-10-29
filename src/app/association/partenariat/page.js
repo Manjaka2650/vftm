@@ -33,7 +33,7 @@ function Content() {
               Association{" >  "}
             </p>
             <p className="text-white hover:text-gray-300 cursor-pointer">
-              Partenaire;
+              Partenaire
             </p>
           </div>
         </div>
