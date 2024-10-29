@@ -156,8 +156,8 @@ const ValueProposition = () => {
               className="w-full h-32 object-cover rounded mb-4"
             />
           }
-          title="D&eacute;VELOPPEMENT DURABLE"
-          description="Notre engagement s'inscrit dans l'Agenda 2030 de d&eacute;veloppement durable."
+          title="D&Eacute;VELOPPEMENT DURABLE"
+          description="Notre engagement s'inscrit dans l'Agenda 2030 de d&Eacute;veloppement durable."
           color="bg-green-500"
         />
         <ValueCard
@@ -170,7 +170,7 @@ const ValueProposition = () => {
               className="w-full h-32 object-cover rounded mb-4"
             />
           }
-          title="&eacute;CHANGE ET RESPECT"
+          title="&Eacute;CHANGE ET RESPECT"
           description="Favoriser des relations basées sur la confiance et la compréhension mutuelle."
           color="bg-blue-500"
         />

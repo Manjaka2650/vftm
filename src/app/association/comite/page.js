@@ -75,31 +75,31 @@ const ProfileComponentTaratra = () => {
             Directeur
           </h3>
           <p className="mt-2 text-gray-700">
-            Agriculteur-Maraîcher. Maîtrise feacute;deacute;rale en
-            arboriculture. Speacute;cialiste en production d&apos;oignons,
+            Agriculteur-Maraîcher. Maîtrise f&eacute;d&eacute;rale en
+            arboriculture. Sp&eacute;cialiste en production d&apos;oignons,
             pommes de terre et graines maraîch&egrave;res.
           </p>
 
           <p className="mt-2 text-gray-700">
             Chef de projet chez APPNAL (Association des producteurs de pommes de
-            terre nouvelles de l&apos;Arc leacute;manique).
+            terre nouvelles de l&apos;Arc l&eacute;manique).
           </p>
 
           <p className="mt-2 text-gray-700">
-            Creacute;ateur et deacute;veloppeur des concepts pommes de terre:
-            Amandine (Migros), Celtiane (Coop), Gwenne (Raclette seacute;lection
-            Migros), etc.
+            Cr&eacute;ateur et d&eacute;veloppeur des concepts pommes de terre:
+            Amandine (Migros), Celtiane (Coop), Gwenne (Raclette
+            s&eacute;lection Migros), etc.
           </p>
 
           <p className="mt-2 text-gray-700">
-            Entraide et deacute;veloppement au Niger, en particulier.
+            Entraide et d&eacute;veloppement au Niger, en particulier.
           </p>
 
           <p className="mt-4 text-gray-900 font-semibold">
-            Domaines d&apos;expeacute;rience –
+            Domaines d&apos;exp&eacute;rience –
             <span className="font-normal">
               {" "}
-              Creacute;ation, production et deacute;veloppement de produits
+              Cr&eacute;ation, production et d&eacute;veloppement de produits
               agricoles. Gestion de la chaîne de production pomme de terre.
             </span>
           </p>
@@ -107,10 +107,10 @@ const ProfileComponentTaratra = () => {
       </div>
 
       <p className="mt-4 text-gray-900 font-semibold">
-        Compeacute;tences –
+        Comp&eacute;tences –
         <span className="font-normal">
           {" "}
-          Management, analyse de projets agricoles, deacute;veloppement de
+          Management, analyse de projets agricoles, d&eacute;veloppement de
           concepts, relations humaines.
         </span>
       </p>
@@ -142,25 +142,25 @@ const ProfileComponentDadafara = () => {
             Pr&eacute;sident
           </h3>
           <p className="mt-2 text-gray-700">
-            Agriculteur-Maraîcher. Maîtrise feacute;deacute;rale en
-            arboriculture. Speacute;cialiste en production d&apos;oignons,
+            Agriculteur-Maraîcher. Maîtrise f&eacute;d&eacute;rale en
+            arboriculture. Sp&eacute;cialiste en production d&apos;oignons,
             pommes de terre et graines maraîch&egrave;res.
           </p>
 
           <p className="mt-2 text-gray-700">
             Chef de projet chez APPNAL (Association des producteurs de pommes de
-            terre nouvelles de l&apos;Arc leacute;manique).
+            terre nouvelles de l&apos;Arc l&eacute;manique).
           </p>
 
           <p className="mt-2 text-gray-700">
-            Entraide et deacute;veloppement de Madagascar, en particulier.
+            Entraide et d&eacute;veloppement de Madagascar, en particulier.
           </p>
 
           <p className="mt-4 text-gray-900 font-semibold">
-            Domaines d&apos;expeacute;rience –
+            Domaines d&apos;exp&eacute;rience –
             <span className="font-normal">
               {" "}
-              Creacute;ation, production et deacute;veloppement de produits
+              Cr&eacute;ation, production et d&eacute;veloppement de produits
               agricoles. Gestion de la chaîne de production pomme de terre.
             </span>
           </p>
@@ -168,10 +168,10 @@ const ProfileComponentDadafara = () => {
       </div>
 
       <p className="mt-4 text-gray-900 font-semibold">
-        Compeacute;tences –
+        Comp&eacute;tences –
         <span className="font-normal">
           {" "}
-          Management, analyse de projets agricoles, deacute;veloppement de
+          Management, analyse de projets agricoles, d&eacute;veloppement de
           concepts, relations humaines.
         </span>
       </p>
