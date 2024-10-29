@@ -171,7 +171,7 @@ const ValueProposition = () => {
             />
           }
           title="&eacute;CHANGE ET RESPECT"
-          description="Favoriser des relations bas&eacute;es sur la confiance et la compr&eacute;hension mutuelle."
+          description="Favoriser des relations basées sur la confiance et la compréhension mutuelle."
           color="bg-blue-500"
         />
         <ValueCard
@@ -184,7 +184,7 @@ const ValueProposition = () => {
               className="w-full h-32 object-cover rounded mb-4"
             />
           }
-          title="S&eacute;CURIT&eacute; ALIMENTAIRE"
+          title="SECURITE ALIMENTAIRE"
           description="Assurer un accès fiable à des aliments nutritifs et suffisants pour tous."
           color="bg-yellow-500"
         />
@@ -262,7 +262,7 @@ function Component2({ image, id }) {
         </h2>
         <p className="mt-2 text-black">
           Pr&eacute;sence, participation interactive et &eacute;motion des
-          membres et invit&eacute;es à la 13e assembl&eacute;e
+          membres et invit&eacute;es &agrave; la 13e assembl&eacute;e
           g&eacute;n&eacute;rale d&apos;Agro-sans-fronti&egrave;re Suisse. Un
           soutien &eacute;vident et un encouragement pour le comit&eacute; et
           les chef-fe-s de projet en Afrique de l&apos;Ouest et [...]
@@ -299,8 +299,8 @@ function Component3({ image, id }) {
         </h2>
         <p className="mt-2 text-black">
           Le site d&apos;Hamdallaye ou « Tilapia City » devient un centre de
-          comp&eacute;tences multi-domaines qui regroupera à terme les bassins
-          pour la pisciculture, le local de stockage
+          comp&eacute;tences multi-domaines qui regroupera &agrave; terme les
+          bassins pour la pisciculture, le local de stockage
           r&eacute;frig&eacute;r&eacute; existant et les bâtiments abritant les
           microentreprises en cours de cr&eacute;ation[...]
         </p>
