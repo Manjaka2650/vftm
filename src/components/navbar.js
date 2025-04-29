@@ -11,6 +11,9 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+const LogoNon = ({ windowWidth }) => {
+  return <>{<span style={{ marginLeft: "20px", fontSize: "16px" }}></span>}</>;
+};
 
 export function Navbar() {
   const router = useRouter();
@@ -24,18 +27,19 @@ export function Navbar() {
   function handleOpen() {
     setOpen((cur) => !cur);
   }
-  const [windowWidth, setWindowWidth] = React.useState(false);
+  const [windowWidth, setWindowWidth] = React.useState(
+    typeof window !== "undefined" ? window.innerWidth : 0 // Initialize based on current window width
+  );
 
   // Function to handle window resize
   const handleResize = () => {
-    setWindowWidth(window.innerWidth > 728);
+    setWindowWidth(window.innerWidth);
   };
 
-  // Add event listener for window resize on component mount
   React.useEffect(() => {
+    handleResize(); // Run resize handler on component mount
     window.addEventListener("resize", handleResize);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -122,15 +126,8 @@ export function Navbar() {
             height={100}
             style={{ borderRadius: "8px" }}
           />
-          {windowWidth ? (
-            <span style={{ marginLeft: "20px", fontSize: "16px" }}>
-              V F T M
-            </span>
-          ) : (
-            <span style={{ marginLeft: "20px", fontSize: "16px" }}>
-              Vondrona Fampandrosoana ny Tantsaha Matsiatra Ambony
-            </span>
-          )}
+
+          <LogoNon windowWidth={windowWidth} />
         </Typography>
         <ul
           className={`ml-10 hidden items-center gap-6 lg:flex ${
@@ -215,14 +212,14 @@ export function Navbar() {
           )}
         </IconButton>
       </div>
-      <Collapsable open={open} getLinkClass={getLinkClass} />
+      <Collapsable open={open} getLinkClass={getLinkClass} router={router} />
     </MTNavbar>
   );
 }
 
 export default Navbar;
 
-const Collapsable = ({ open, getLinkClass }) => {
+const Collapsable = ({ open, getLinkClass, router }) => {
   const [openDropdown, setOpenDropdown] = React.useState(false);
 
   return (

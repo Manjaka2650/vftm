@@ -5,7 +5,7 @@ import Activite2 from "./typeActivity2";
 import Activite3 from "./typeActivity3";
 // import Image from "next/image";
 
-import { Button, Typography, Card, CardBody } from "@material-tailwind/react";
+import { Typography, Card, CardBody } from "@material-tailwind/react";
 
 export function Page() {
   return (

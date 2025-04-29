@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
+import api from "../lien";
 
 function Footer() {
   const pathname = usePathname();
@@ -11,7 +12,23 @@ function Footer() {
       ? "text-white hover:text-green-200"
       : "hover:text-green-200";
   };
-
+  const [email, setemail] = useState("");
+  const [message, setmessage] = useState("");
+  const [loading, setloading] = useState("Envoyer");
+  const sendMail = async (e) => {
+    e.preventDefault();
+    try {
+      setmessage("");
+      setemail("");
+      setloading("...");
+      const response = await api.post("/send-mail", { email, message });
+      alert("Message envoyé avec succès");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setloading("Envoyer");
+    }
+  };
   return (
     <footer className="bg-green-600 w-full text-white">
       <div className="max-w-screen-xl mx-auto p-5 border-t border-blue-gray-50 flex flex-wrap justify-between">
@@ -68,21 +85,25 @@ function Footer() {
 
         <div className="w-full md:w-1/3 p-4">
           <div className="font-semibold text-lg">Contactez-nous</div>
-          <form className="mt-2">
+          <form className="mt-2" onSubmit={sendMail}>
             <input
               type="email"
               placeholder="Votre adresse email"
               required
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
               className="w-full h-12 border border-gray-300 rounded-lg p-2 text-gray-800 mb-2"
             />
             <textarea
+              onChange={(e) => setmessage(e.target.value)}
               placeholder="Message"
               required
+              value={message}
               className="w-full h-16 border border-gray-300 rounded-lg p-2 text-gray-800 mb-2"
             />
             <input
               type="submit"
-              value="Envoyer"
+              value={loading}
               className="w-full h-10 bg-green-700 text-white font-semibold rounded-lg cursor-pointer hover:bg-green-800 transition duration-300"
             />
           </form>

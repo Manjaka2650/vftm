@@ -2,25 +2,22 @@
 
 import Image from "next/image";
 import { Typography } from "@material-tailwind/react";
-import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
+import api, { lien } from "../../lien";
 export function Index() {
-  const sary10 = "/image/vftm/sary9.JPG";
-  const sary20 = "/image/vftm/sary2.JPG";
-  const sary30 = "/image/vftm/sary12.png";
-  const sary50 = "/image/vftm/sary11.JPG";
-  const sary60 = "/image/vftm/sary1.JPG";
-
-  const images = [
-    { src: sary10, alt: "image1" },
-    { src: sary20, alt: "image2" },
-    { src: sary30, alt: "image3" },
-    { src: sary50, alt: "image4" },
-    { src: sary60, alt: "image5" },
-  ];
-
+  const [reunionData, setreunionData] = useState([]);
+  const fetchAllReunion = async () => {
+    try {
+      const response = await api.get("/get-all-reunion");
+      setreunionData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchAllReunion();
+  }, []);
   return (
     <section className="pt-20">
       <div className="relative bg-cover bg-no-repeat p-10 items-center bg-green-600">
@@ -43,12 +40,20 @@ export function Index() {
       </div>
 
       <section className="w-full max-w-6xl mx-auto flex flex-col px-4  space-y-8 mb-20">
-        {images.map((image, index) => (
-          <Project key={index} image={image.src} id={index + 1} />
-        ))}
+        {reunionData.length > 0 &&
+          reunionData.map((reunion, index) => (
+            <Project
+              key={index}
+              image={`${lien}${reunion.image}`}
+              id={reunion.id_reunion}
+              content={reunion.content}
+              titre={reunion.titre}
+              limit={200}
+            />
+          ))}
       </section>
       <section className="flex justify-center mb-20">
-        <Pagination currentPage={1} totalPages={10} />
+        <Pagination currentPage={1} totalPages={reunionData.length} />
       </section>
     </section>
   );
@@ -162,10 +167,18 @@ const Pagination = ({ currentPage, totalPages }) => {
   );
 };
 
-function Project({ image, id }) {
+export function Project({
+  image,
+  id,
+  titre,
+  content,
+  limit,
+  plusVisible = true,
+}) {
   const router = useRouter(); // Instantiate the router
+  const truncatedMachin = truncateHTMLWithTags(content, limit);
   return (
-    <div className="container mx-auto p-4 flex flex-col items-center">
+    <div className=" mx-auto p-4 flex flex-col ">
       <Image
         src={image}
         alt="Malagasy Project"
@@ -174,24 +187,49 @@ function Project({ image, id }) {
         className=" w-[80vw] h-[50vh] object-cover mb-5" // Set image size
       />
       <div>
-        <h1 className="text-2xl font-bold text-green-600 mb-4">
-          LE PROJET MALGACHE EN 2024
-        </h1>
-        <p className="text-lg text-gray-700 mt-4 mb-4">
-          Le projet sur les hauts plateaux &agrave; Madagascar men&eacute; par
-          Ruth Rossier, cheffe de projet VFTM, connait une &eacute;volution
-          r&eacute;jouissante. Un nouvel accord annuel sign&eacute; avec notre
-          partenaire, la VFTM, en d&eacute;finit les activit&eacute;s et les
-          perspectives de d&eacute;veloppement en 2024. Un d&eacute;veloppement
-          dans trois domaines-cl&eacute;s Formation: le point fort [...]
-        </p>
-        <button
-          onClick={() => router.push(`/actu/detail/${id}`)} // Navigate to the detail page with the post's ID
-          className="bg-white hover:bg-green-700 text-green-400 border border-green-700 hover:text-white font-bold py-2 px-4 rounded mt-4"
-        >
-          Voir plus...
-        </button>
+        <h1 className="text-2xl font-bold text-green-600 mb-4">{titre}</h1>
+        <div
+          dangerouslySetInnerHTML={{ __html: truncatedMachin }}
+          className="text-lg text-gray-700 mt-4 mb-4"
+        />
+        {plusVisible && (
+          <button
+            onClick={() => router.push(`/actu/detail/${id}`)} // Navigate to the detail page with the post's ID
+            className="bg-white hover:bg-green-700 text-green-400 border border-green-700 hover:text-white font-bold py-2 px-4 rounded mt-4"
+          >
+            Voir plus...
+          </button>
+        )}
       </div>
     </div>
   );
+}
+
+export function truncateHTMLWithTags(html, limit) {
+  if (limit == null) return html;
+  let charCount = 0;
+  const truncatedHTML = [];
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
+
+  function traverseNodes(node) {
+    if (charCount >= limit) return;
+
+    if (node.nodeType === Node.TEXT_NODE) {
+      const remainingChars = limit - charCount;
+      const text = node.textContent.slice(0, remainingChars);
+      charCount += text.length;
+      truncatedHTML.push(text);
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      truncatedHTML.push(`<${node.tagName.toLowerCase()}>`);
+      for (let child of node.childNodes) {
+        traverseNodes(child);
+        if (charCount >= limit) break;
+      }
+      truncatedHTML.push(`</${node.tagName.toLowerCase()}>`);
+    }
+  }
+
+  doc.body.childNodes.forEach(traverseNodes);
+  return truncatedHTML.join("") + (charCount >= limit ? "[...]" : "");
 }

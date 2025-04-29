@@ -5,6 +5,9 @@ import { useParams } from "next/navigation"; // useParams to access route params
 
 import Navbar from "../../../../components/navbar";
 import Footer from "../../../../components/footer";
+import api, { lien } from "../../../../lien";
+import { useEffect, useState } from "react";
+import { truncateHTMLWithTags } from "../../../actu";
 
 export default function ProjetDetailPage() {
   // const params = useParams(); // get the dynamic route parameters
@@ -20,6 +23,21 @@ export default function ProjetDetailPage() {
 }
 
 function Content() {
+  const { id } = useParams();
+  const [projet, setprojet] = useState({});
+  const getDetail = async () => {
+    try {
+      const response = await api.get("/get-single-projet/" + id);
+      setprojet(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getDetail();
+  }, []);
+
   return (
     <section className="pt-20">
       <div className="relative bg-cover bg-no-repeat p-10 items-center bg-green-600">
@@ -28,7 +46,7 @@ function Content() {
             variant="h3"
             className="text-white " // Added a color for hover state
           >
-            Nos Projet
+            Projet
           </Typography>
           <div className="flex flex-wrap">
             <p className="text-white hover:text-gray-300 cursor-pointer">
@@ -40,13 +58,26 @@ function Content() {
           </div>
         </div>
       </div>
+
       <section className="w-full max-w-6xl mx-auto flex flex-col px-4  space-y-8 mb-20">
-        <Project image={"/image/vftm-actu/img28.png"} />
+        {projet && projet.image ? (
+          <Project
+            image={`${lien}${projet.image}`}
+            titre={projet.titre}
+            content={projet.content}
+            amountCollected={projet.montant_obtenu}
+            totalRequired={projet.montant_voulu}
+          />
+        ) : (
+          <p>Projet non trouv&eacute;</p>
+        )}
       </section>
     </section>
   );
 }
-function Project({ image }) {
+function Project({ image, titre, content, amountCollected, totalRequired }) {
+  const truncatedMachin = truncateHTMLWithTags(content, null);
+
   const galleryImages = [
     "/image/vftm-actu/img1.png",
     "/image/vftm-actu/img2.png",
@@ -55,7 +86,7 @@ function Project({ image }) {
     "/image/vftm-actu/img5.png",
   ];
   return (
-    <div className="container mx-auto p-4 flex flex-col items-center">
+    <div className="container mx-auto p-4 flex flex-col  ">
       <Image
         src={image}
         alt="Malagasy Project"
@@ -64,30 +95,13 @@ function Project({ image }) {
         className=" w-[80vw] h-[50vh] object-cover mb-5" // Set image size
       />
       <div>
-        <h1 className="text-2xl font-bold text-green-600 mb-4">
-          LE PROJET MALGACHE EN 2024
+        <h1 className="text-2xl font-bold text-green-600 mb-4 uppercase">
+          {titre}
         </h1>
-        <p className="text-lg text-gray-700 mt-4 mb-4">
-          Le 13 mai 2023, VFTM a renou&eacute; avec son assembl&eacute;e
-          g&eacute;n&eacute;rale tenue en pr&eacute;sentiel. Un plaisir toujours
-          renouvel&eacute; de retrouver nos membres de Suisse romande et
-          d&apos;Outre-Sarine qui avaient fait le d&eacute;placement
-          jusqu&apos;&agrave; l&apos;Agroscope de Changins. La
-          pr&eacute;sentation des trois projets g&eacute;r&eacute;s par Robert
-          Girardet (Niger), Jacques Auderset (S&eacute;n&eacute;gal) et Ruth
-          Rossier (Madagascar) a suscit&eacute; un grand int&eacute;ret et de
-          nombreux &eacute;changes de la part des participant·e·s. Le rapport
-          annuel de nos activit&eacute;s en 2021 remis &agrave; nos
-          invit&eacute;·e·s a compl&eacute;t&eacute; les informations
-          donn&eacute;es. Ce rapport est publi&eacute;. Cette assembl&eacute;e a
-          &eacute;galement &eacute;t&eacute; une tr&egrave;s belle occasion de
-          rendre hommage &agrave; notre pr&eacute;sident fondateur, Werner
-          Reust, en le nommant par acclamation Pr&eacute;sident d&apos;honneur
-          d&apos;Agro-sans-fronti&egrave;re Suisse. Apr&egrave;s dix
-          ann&eacute;es d&apos;engagement en Suisse et sur le terrain, Werner a
-          transmis le flambeau de la pr&eacute;sidence &agrave; notre
-          coll&egrave;gue, Philippe Deriaz, en septembre 2021.
-        </p>
+        <div
+          dangerouslySetInnerHTML={{ __html: truncatedMachin }}
+          className="text-lg text-gray-700 mt-4 mb-4  w-full"
+        />
       </div>
       <div className="w-full flex flex-wrap  mt-8">
         {galleryImages.map((image, index) => (
