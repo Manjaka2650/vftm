@@ -7,7 +7,8 @@ import axios from "axios";
 // const link = "http://192.168.1.143:5000";
 // const link = "http://192.168.1.144:8081";
 // const link = "http://192.168.43.131:5000";
-const link = "http://localhost:5000";
+// const link = "http://localhost:5000";
+const link = "https://backend-vftm.onrender.com";
 //
 export const lien = link;
 const api = axios.create({
