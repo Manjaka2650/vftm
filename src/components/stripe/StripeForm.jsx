@@ -1,5 +1,5 @@
 "use client";
-import { use, useState } from "react";
+import { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useParams } from "next/navigation";
 const key =
@@ -18,13 +18,21 @@ const DonationForm = () => {
   const handleDonate = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/create-donation-session", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ montant, id_projet, donateur, commentaire }),
-      });
+      const res = await fetch(
+        "https://backend-vftm.onrender.com/create-donation-session",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            montant,
+            id_projet: id,
+            donateur,
+            commentaire,
+          }),
+        }
+      );
 
       const data = await res.json();
 
